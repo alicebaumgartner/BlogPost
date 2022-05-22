@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * reads and writes the data in the JSON-files
  */
+
 public class DataHandler {
     private static DataHandler instance = null;
     private List<Kommentar> kommentarList;

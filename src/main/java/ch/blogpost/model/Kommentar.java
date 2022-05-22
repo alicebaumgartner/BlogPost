@@ -1,5 +1,7 @@
 package ch.blogpost.model;
 
+import ch.blogpost.model.Post;
+import ch.blogpost.model.Person;
 import java.time.LocalDate;
 
 public class Kommentar {
