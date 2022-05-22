@@ -77,4 +77,3 @@ public class Config extends Application {
             Config.properties = properties;
         }
     }
-}
