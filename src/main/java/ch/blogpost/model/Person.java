@@ -1,13 +1,19 @@
 package ch.blogpost.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.util.List;
 
 public class Person {
+
     private List<Post> postList;
+
     private String personUUID;
     private String username;
     private String name;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate beitritt;
 
     public Person( String personUUID,String username, String name, LocalDate beitritt) {

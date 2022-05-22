@@ -1,13 +1,21 @@
 package ch.blogpost.model;
 
-import ch.blogpost.model.Post;
-import ch.blogpost.model.Person;
+import ch.blogpost.json.deserializer.PersonDeserializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.time.LocalDate;
 
 public class Kommentar {
     private String kommentarUUID;
+
+    @JsonDeserialize(using = PersonDeserializer.class)
     private Person person;
+
+
     private Post post;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate date;
     private String kommentar;
 

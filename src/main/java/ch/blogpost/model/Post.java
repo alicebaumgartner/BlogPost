@@ -1,15 +1,24 @@
 package ch.blogpost.model;
 
-import java.time.LocalDate;
+import ch.blogpost.json.deserializer.PersonDeserializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Post {
     private String postUUID;
+
+    @JsonDeserialize(using = PersonDeserializer.class)
     private Person autor;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy hh:mm:ss")
     private LocalDateTime datum;
+
     private String text;
     private int lesezeit;
+
     private List<Kommentar> kommentare;
 
     public Post(String postUUID,Person autor, LocalDateTime datum, String text, int lesezeit) {

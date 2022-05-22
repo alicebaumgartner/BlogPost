@@ -1,8 +1,10 @@
 package ch.blogpost.service;
 
+
 import ch.blogpost.data.DataHandler;
 
 import ch.blogpost.model.Kommentar;
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
