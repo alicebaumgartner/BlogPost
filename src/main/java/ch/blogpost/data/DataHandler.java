@@ -31,11 +31,11 @@ public class DataHandler {
      */
     private DataHandler() {
         setPersonList(new ArrayList<>());
-        readallPersons();
+        readPersonJSON();
         setPostList(new ArrayList<>());
-        readAllPost();
+        readPostJSON();
         setKommentarlist(new ArrayList<>());
-        readallKommentar();
+        readKommentarJSON();
     }
 
     /**
@@ -225,7 +225,7 @@ public class DataHandler {
      */
     private void readPersonJSON() {
         try {
-            String path = Config.getProperty("bookJSON");
+            String path = Config.getProperty("personJSON");
             byte[] jsonData = Files.readAllBytes(
                     Paths.get(path)
             );
@@ -248,7 +248,7 @@ public class DataHandler {
         FileOutputStream fileOutputStream = null;
         Writer fileWriter;
 
-        String bookPath = Config.getProperty("bookJSON");
+        String bookPath = Config.getProperty("personJSON");
         try {
             fileOutputStream = new FileOutputStream(bookPath);
             fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
