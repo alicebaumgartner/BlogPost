@@ -4,12 +4,14 @@ import ch.blogpost.data.DataHandler;
 import ch.blogpost.model.Personly;
 
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,6 +46,7 @@ public class PersonService {
         @Path("read")
         @Produces(MediaType.APPLICATION_JSON)
         public Response readPerson(
+                @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
                 @QueryParam("uuid") String personUUID
         ) {
             int httpStatus = 200;
@@ -66,13 +69,17 @@ public class PersonService {
      * @param username the name of the person
      * @return Response
      */
-    @POST
+    @PUT
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertPerson(
             @NotEmpty
             @Pattern(regexp = "^[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
-            @FormParam("username") String username
+            @FormParam("username") String username,
+            @Pattern(regexp = "^[A-Za-z]+ [A-Za-z]+$")
+            @FormParam("name") String name,
+            @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
+            @FormParam("beitritt") String beitritt
     ) {
         Personly person = new Personly();
         person.setPersonUUID(UUID.randomUUID().toString());
@@ -91,17 +98,26 @@ public class PersonService {
      * @param username the username of the person
      * @return Response
      */
-    @PUT
+    @POST
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updatePerson(
+            @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
             @FormParam("uuid") String personUUID,
-            @FormParam("username") String username
-    ) {
+            @Pattern(regexp = "^[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
+            @FormParam("username") String username,
+            @Pattern(regexp = "^[A-Za-z]+ [A-Za-z]+$")
+            @FormParam("name") String name,
+            @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
+            @FormParam("beitritt") String beitritt
+    ) throws ParseException {
         int httpStatus = 200;
         Personly person = DataHandler.readPersonbyUUID(personUUID);
         if (person != null) {
             person.setUsername(username);
+            person.setName(name);
+            Date beitrittdatum=new SimpleDateFormat("dd.MM.yyyy").parse(beitritt);
+            person.setBeitritt(beitrittdatum);
 
             DataHandler.updatePerson();
         } else {

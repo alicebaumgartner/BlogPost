@@ -46,7 +46,10 @@ public class KommentarService {
         @Path("read")
         @Produces(MediaType.APPLICATION_JSON)
         public Response readComment(
+                @NotEmpty
+                @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
                 @QueryParam("uuid") String kommentarUUID
+
         ) {
             int httpStatus = 200;
             Kommentarly kommentar = DataHandler.readKommentarbyUUID(kommentarUUID);
@@ -59,8 +62,6 @@ public class KommentarService {
                     .build();
         }
 
-
-        //TODO add as param postUUID
     /**
      * inserts a new comment
      * @param personUUID the uuid of the person
