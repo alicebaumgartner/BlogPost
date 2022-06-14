@@ -1,9 +1,9 @@
-ch\blogpost\model\Person.class
+ch\blogpost\model\Kommentarly.class
 ch\blogpost\service\PersonService.class
 ch\blogpost\data\DataHandler.class
 ch\blogpost\service\PostService.class
 ch\blogpost\service\TestService.class
+ch\blogpost\model\Personly.class
 ch\blogpost\service\KommentarService.class
-ch\blogpost\model\Kommentar.class
 ch\blogpost\service\Config.class
-ch\blogpost\model\Post.class
+ch\blogpost\model\Postly.class

@@ -1,8 +1,8 @@
 package ch.blogpost.data;
 
-import ch.blogpost.model.Kommentar;
-import ch.blogpost.model.Person;
-import ch.blogpost.model.Post;
+import ch.blogpost.model.Kommentarly;
+import ch.blogpost.model.Personly;
+import ch.blogpost.model.Postly;
 import ch.blogpost.service.Config;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -20,32 +20,17 @@ import java.util.List;
  * reads and writes the data in the JSON-files
  */
 
-public class DataHandler {
-    private static DataHandler instance = null;
-    private List<Kommentar> kommentarList;
-    private List<Post> postList;
-    private List<Person> personList;
+public final class DataHandler {
+
+    private static List<Kommentarly> kommentarlyList;
+    private static List<Postly> postlyList;
+    private static List<Personly> personlyList;
 
     /**
      * private constructor defeats instantiation
      */
-    private DataHandler() {
-        setPersonList(new ArrayList<>());
-        readPersonJSON();
-        setPostList(new ArrayList<>());
-        readPostJSON();
-        setKommentarlist(new ArrayList<>());
-        readKommentarJSON();
-    }
+    public DataHandler() {
 
-    /**
-     * gets the only instance of this class
-     * @return
-     */
-    public static DataHandler getInstance() {
-        if (instance == null)
-            instance = new DataHandler();
-        return instance;
     }
 
 
@@ -53,7 +38,7 @@ public class DataHandler {
      * reads all books
      * @return list of books
      */
-    public List<Person> readallPersons() {
+    public static List<Personly> readAllPersons() {
         return getpersonlist();
     }
 
@@ -62,30 +47,30 @@ public class DataHandler {
      * @param personUUID
      * @return the Book (null=not found)
      */
-    public Person readPersonbyUUID(String personUUID) {
-        Person person = null;
-        for (Person entry : getpersonlist()) {
+    public static Personly readPersonbyUUID(String personUUID) {
+        Personly personly = null;
+        for (Personly entry : getpersonlist()) {
             if (entry.getPersonUUID().equals(personUUID)) {
-                person = entry;
+                personly = entry;
             }
         }
-        return person;
+        return personly;
     }
 
     /**
      * inserts a new book into the personlist
      *
-     * @param person the person to be saved
+     * @param personly the person to be saved
      */
-    public void insertPerson(Person person) {
-        getpersonlist().add(person);
+    public static void insertPerson(Personly personly) {
+        getpersonlist().add(personly);
         writePersonJSON();
     }
 
     /**
      * updates the personlist
      */
-    public void updatePerson() {
+    public static void updatePerson() {
         writePersonJSON();
     }
 
@@ -94,10 +79,10 @@ public class DataHandler {
      * @param personUUID  the key
      * @return  success=true/false
      */
-    public boolean deltePerson(String personUUID) {
-        Person person = readPersonbyUUID(personUUID);
-        if (person != null) {
-            getpersonlist().remove(person);
+    public static boolean deletePerson(String personUUID) {
+        Personly personly = readPersonbyUUID(personUUID);
+        if (personly != null) {
+            getpersonlist().remove(personly);
             writePersonJSON();
             return true;
         } else {
@@ -108,21 +93,21 @@ public class DataHandler {
 
 
     /**
-     * reads all Post
-     * @return list of Post
+     * reads all Postly
+     * @return list of Postly
      */
-    public List<Post> readAllPost() {
-        return postList;
+    public static List<Postly> readAllPostly() {
+        return postlyList;
     }
 
     /**
      * reads a post by its uuid
      * @param postUUID
-     * @return the Post (null=not found)
+     * @return the Postly (null=not found)
      */
-    public Post readPostbyUUID(String postUUID) {
-        Post post = null;
-        for (Post entry : getPostlist()) {
+    public static Postly readPostlybyUUID(String postUUID) {
+        Postly post = null;
+        for (Postly entry :getPostlylist()) {
             if (entry.getPostUUID().equals(postUUID)) {
                 post = entry;
             }
@@ -131,32 +116,36 @@ public class DataHandler {
     }
 
     /**
-     * inserts a new Post into the postlist
+     * inserts a new Postly into the postlyList
      *
-     * @param post the Post to be saved
+     *
+     *
+     * @param post the Postly to be saved
      */
-    public void insertPost(Post post) {
-        getPostlist().add(post);
-        writePostJSON();
+    public static void insertPostly(Postly post) {
+        getPostlylist().add(post);
+        readPostlyJSON();
     }
 
     /**
-     * updates the postlist
+     * updates the postlyList
+     *
+     *
      */
-    public void updatePost() {
-        writePostJSON();
+    public static void updatePostly() {
+        readPostlyJSON();
     }
 
     /**
-     * deletes a Post identified by the postUUID
+     * deletes a Postly identified by the postUUID
      * @param postUUID  the key
      * @return  success=true/false
      */
-    public boolean deletePost(String postUUID) {
-        Post post = readPostbyUUID(postUUID);
+    public static boolean deletePostly(String postUUID) {
+        Postly post = readPostlybyUUID(postUUID);
         if (post != null) {
-            getPostlist().remove(post);
-            writePostJSON();
+            getPostlylist().remove(post);
+            readPostlyJSON();
             return true;
         } else {
             return false;
@@ -167,7 +156,7 @@ public class DataHandler {
      * reads all comments
      * @return list of comments
      */
-    public List<Kommentar> readallKommentar() {
+    public static List<Kommentarly> readallKommentar() {
         return getKommentarlist();
     }
 
@@ -176,30 +165,30 @@ public class DataHandler {
      * @param kommmentarUUID
      * @return the comment (null=not found)
      */
-    public Kommentar readKommentarbyUUID(String kommmentarUUID) {
-        Kommentar kommentar = null;
-        for (Kommentar entry : getKommentarlist()) {
+    public static Kommentarly readKommentarbyUUID(String kommmentarUUID) {
+        Kommentarly kommentarly = null;
+        for (Kommentarly entry : getKommentarlist()) {
             if (entry.getKommentarUUID().equals(kommmentarUUID)) {
-                kommentar = entry;
+                kommentarly = entry;
             }
         }
-        return kommentar;
+        return kommentarly;
     }
 
     /**
      * inserts a new comment into the commentlist
      *
-     * @param kommentar the person to be saved
+     * @param kommentarly the person to be saved
      */
-    public void insertKommentar(Kommentar kommentar) {
-        getKommentarlist().add(kommentar);
+    public static void insertKommentar(Kommentarly kommentarly) {
+        getKommentarlist().add(kommentarly);
         writeKommentarJSON();
     }
 
     /**
      * updates the commentlist
      */
-    public void updateKommentar() {
+    public static void updateKommentar() {
         writeKommentarJSON();
     }
 
@@ -208,10 +197,10 @@ public class DataHandler {
      * @param kommentarUUID  the key
      * @return  success=true/false
      */
-    public boolean deleteKommentar(String kommentarUUID) {
-        Kommentar kommentar = readKommentarbyUUID(kommentarUUID);
-        if (kommentar != null) {
-            getKommentarlist().remove(kommentar);
+    public static boolean deleteKommentar(String kommentarUUID) {
+        Kommentarly kommentarly = readKommentarbyUUID(kommentarUUID);
+        if (kommentarly != null) {
+            getKommentarlist().remove(kommentarly);
             writeKommentarJSON();
             return true;
         } else {
@@ -223,16 +212,16 @@ public class DataHandler {
     /**
      * reads the person from the JSON-file
      */
-    private void readPersonJSON() {
+    private static void readPersonJSON() {
         try {
             String path = Config.getProperty("personJSON");
             byte[] jsonData = Files.readAllBytes(
                     Paths.get(path)
             );
             ObjectMapper objectMapper = new ObjectMapper();
-            Person[] personen = objectMapper.readValue(jsonData, Person[].class);
-            for (Person person : personen) {
-                getpersonlist().add(person);
+            Personly[] personen = objectMapper.readValue(jsonData, Personly[].class);
+            for (Personly personly : personen) {
+                getpersonlist().add(personly);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -242,7 +231,7 @@ public class DataHandler {
     /**
      * writes the bookList to the JSON-file
      */
-    private void writePersonJSON() {
+    private static void writePersonJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         FileOutputStream fileOutputStream = null;
@@ -261,7 +250,7 @@ public class DataHandler {
     /**
      * reads the publishers from the JSON-file
      */
-    private void readKommentarJSON() {
+    private static void readKommentarJSON() {
         try {
             byte[] jsonData = Files.readAllBytes(
                     Paths.get(
@@ -269,9 +258,9 @@ public class DataHandler {
                     )
             );
             ObjectMapper objectMapper = new ObjectMapper();
-            Kommentar[] kommentare = objectMapper.readValue(jsonData, Kommentar[].class);
-            for (Kommentar kommentar : kommentare) {
-                getKommentarlist().add(kommentar);
+            Kommentarly[] kommentare = objectMapper.readValue(jsonData, Kommentarly[].class);
+            for (Kommentarly kommentarly : kommentare) {
+                getKommentarlist().add(kommentarly);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -281,7 +270,7 @@ public class DataHandler {
     /**
      * writes the Kommentarlist to the JSON-file
      */
-    private void writeKommentarJSON() {
+    private static void writeKommentarJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         FileOutputStream fileOutputStream = null;
@@ -297,7 +286,7 @@ public class DataHandler {
         }
     }
 
-    private void readPostJSON() {
+    private static void readPostlyJSON() {
         try {
             byte[] jsonData = Files.readAllBytes(
                     Paths.get(
@@ -305,9 +294,9 @@ public class DataHandler {
                     )
             );
             ObjectMapper objectMapper = new ObjectMapper();
-            Post[] posts = objectMapper.readValue(jsonData, Post[].class);
-            for (Post post : posts) {
-                getPostlist().add(post);
+            Postly[] posts = objectMapper.readValue(jsonData, Postly[].class);
+            for (Postly post : posts) {
+                getPostlylist().add(post);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -315,9 +304,9 @@ public class DataHandler {
     }
 
     /**
-     * writes the Postlist to the JSON-file
+     * writes the Postlylist to the JSON-file
      */
-    private void writePostJSON() {
+    private static void writePostlyJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         FileOutputStream fileOutputStream = null;
@@ -340,8 +329,12 @@ public class DataHandler {
      * @return value of personlist
      */
 
-    private List<Person> getpersonlist() {
-        return personList;
+    private static List<Personly> getpersonlist() {
+        if(personlyList == null) {
+            setPersonList(new ArrayList<>());
+            readPersonJSON();
+        }
+        return personlyList;
     }
 
     /**
@@ -350,28 +343,36 @@ public class DataHandler {
      * @param personlist the value to set
      */
 
-    private void setPersonList(List<Person> personlist) {
-        this.personList = personlist;
+    private static void setPersonList(List<Personly> personlist) {
+        DataHandler.personlyList = personlist;
     }
 
     /**
-     * gets postlist
+     * gets postlyList
      *
-     * @return value of postlist
+     *
+     *
+     * @return value of postlyList
+     *
+     *
      */
 
-    private List<Post> getPostlist() {
-        return postList;
+    private static List<Postly> getPostlylist() {
+        if(postlyList == null) {
+            setPostlyList(new ArrayList<>());
+            readPostlyJSON();
+        }
+        return postlyList;
     }
 
     /**
      * sets publisherList
      *
-     * @param postList the value to set
+     * @param postlyList the value to set
      */
 
-    private void setPostList(List<Post> postList) {
-        this.postList = postList;
+    private static void setPostlyList(List<Postly> postlyList) {
+        DataHandler.postlyList = postlyList;
     }
 
 
@@ -381,8 +382,13 @@ public class DataHandler {
      * @return value of kommentarlist
      */
 
-    private List<Kommentar> getKommentarlist() {
-        return kommentarList;
+    private static List<Kommentarly> getKommentarlist() {
+        if(kommentarlyList == null) {
+            setKommentarlist(new ArrayList<>());
+            readKommentarJSON();
+        }
+
+        return kommentarlyList;
     }
 
     /**
@@ -391,8 +397,8 @@ public class DataHandler {
      * @param kommentarlist the value to set
      */
 
-    private void setKommentarlist(List<Kommentar> kommentarlist) {
-        this.kommentarList = kommentarlist;
+    private static void setKommentarlist(List<Kommentarly> kommentarlist) {
+        DataHandler.kommentarlyList = kommentarlist;
     }
 
 

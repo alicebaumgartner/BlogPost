@@ -2,8 +2,8 @@ C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\
 C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\service\PostService.java
 C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\data\DataHandler.java
 C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\service\KommentarService.java
-C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\model\Kommentar.java
 C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\service\TestService.java
-C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\model\Post.java
+C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\model\Postly.java
 C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\service\Config.java
-C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\model\Person.java
+C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\model\Kommentarly.java
+C:\Users\alice\Documents\BZZ\Informatik\M133\BlogPost\src\main\java\ch\blogpost\model\Personly.java

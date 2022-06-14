@@ -5,34 +5,48 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+
+import javax.ws.rs.FormParam;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * a comment under the post
  */
-public class Kommentar {
+public class Kommentarly {
+    @FormParam("kommentarUUID")
+    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String kommentarUUID;
 
     @JsonIgnore
-    private Person person;
+    private Personly person;
 
     @JsonIgnore
-    private Post post;
+    private Postly post;
 
+    @FormParam("date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @NotEmpty
     private Date date;
+
+
+    @FormParam("kommentar")
+    @Size(min = 2, max=100)
     private String kommentar;
 
-    public Kommentar() {
+    public Kommentarly() {
     }
 
     /**
      * creates a Kommentar-object
      */
 
-    public Kommentar(String kommentarUUID, Person person, Post post, Date date, String kommentar) {
+    public Kommentarly(String kommentarUUID, Personly person, Postly post, Date date, String kommentar) {
         this.kommentarUUID = kommentarUUID;
         this.person = person;
         this.post = post;
@@ -42,20 +56,36 @@ public class Kommentar {
 
 
     public void setPersonUUID(String personUUID) {
-        setPerson(DataHandler.getInstance().readPersonbyUUID(personUUID));
+        setPerson(new Personly());
+        Personly person = DataHandler.readPersonbyUUID(personUUID);
+        getPerson().setPersonUUID(personUUID);
+        getPerson().setPerson(person.getPersonUUID());
+        setPerson(DataHandler.readPersonbyUUID(personUUID));
     }
 
     public void setPostUUID(String postUUID) {
-        setPost(DataHandler.getInstance().readPostbyUUID(postUUID));
+        setPost(new Postly());
+        Postly post = DataHandler.readPostlybyUUID(postUUID);
+        getPost().setPostUUID(postUUID);
+        getPost().setPost(post.getPostUUID());
     }
 
 
     /**
      * gets the personsUUID from the Person-object
+     * @return person-object
+     */
+    public Personly getPerson() {
+       return person;
+    }
+
+    /**
+     * gets the personsUUID from the Person-object
      * @return value of personUUID
      */
-    public ch.blogpost.model.Person getPerson() {
-        return person;
+    public String  getPersonUUID() {
+        if (getPerson()== null) return null;
+        return getPerson().getPersonUUID();
     }
 
     /**
@@ -63,9 +93,11 @@ public class Kommentar {
      *
      * @param person the value to set
      */
-    public void setPerson(ch.blogpost.model.Person person) {
+    public void setPerson( Personly person) {
         this.person = person;
     }
+
+
 
     /**
      * gets the date
@@ -122,7 +154,7 @@ public class Kommentar {
      * gets the post from post-Object
      * @return value of post
      */
-    public Post getPost() {
+    public Postly getPost() {
         return post;
     }
 
@@ -131,7 +163,7 @@ public class Kommentar {
      *
      * @param post the value to set
      */
-    public void setPost(Post post) {
+    public void setPost(Postly post) {
         this.post = post;
     }
 }

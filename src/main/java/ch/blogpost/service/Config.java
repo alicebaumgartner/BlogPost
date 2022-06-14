@@ -19,7 +19,7 @@ public class Config extends Application {
 
 
 
-        private static final String PROPERTIES_PATH = "C:/Users/alice/Documents/BZZ/Informatik/M133/BlogPost/src/main/webapp/blogpost.properties";
+        private static final String PROPERTIES_PATH = "C:/Users/alice/Documents/BZZ/Informatik/M133/BlogPost/src/main/testing/blogpost.properties";
         private static Properties properties = null;
 
         /**

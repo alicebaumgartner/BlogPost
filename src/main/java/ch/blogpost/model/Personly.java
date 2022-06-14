@@ -7,6 +7,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.ws.rs.FormParam;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,26 +20,35 @@ import java.util.List;
 /**
  * a person
  */
-public class Person {
+public class Personly {
 
     @JsonIgnore
-    private List<Post> postList;
+    private List<Postly> postList;
 
+    @FormParam("personUUID")
+    @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
     private String personUUID;
+
+    @FormParam("username")
+    @Pattern(regexp = "^[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
     private String username;
+
+    @FormParam("name")
+    @Pattern(regexp = "/^[A-Za-z]+ [A-Za-z]+$/")
     private String name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @NotEmpty
     private Date beitritt;
 
-    public Person() {
+    public Personly() {
     }
 
 
     /**
      * creates a Person-object
      */
-    public Person(List<Post> postList, String personUUID, String username, String name, Date beitritt) {
+    public Personly(List<Postly> postList, String personUUID, String username, String name, Date beitritt) {
         this.postList = postList;
         this.personUUID = personUUID;
         this.username = username;
@@ -43,13 +56,12 @@ public class Person {
         this.beitritt = beitritt;
     }
 
-
+/*
     public void setPostListUUID(ArrayNode postListUUID){
         setPostList(new ArrayList<>());
         for (JsonNode postUUIDNode : postListUUID) {
-            getPostList().add(
+           getPostList().add(
                     DataHandler
-                            .getInstance()
                             .readPostbyUUID(
                                     postUUIDNode
                                             .get("postUUID")
@@ -58,13 +70,19 @@ public class Person {
             );
         }
     }
-
+*/
+    public void setPostListUUID(ArrayNode postListUUID){
+        setPostList(new ArrayList<>());
+        for (JsonNode postUUIDNode : postListUUID){
+            getPostList().add(DataHandler.readPostlybyUUID(postUUIDNode.get("postUUID").textValue()));
+        }
+    }
 
     /**
      * gets the postlist from the post-object
      * @return postlist
      */
-    public List<Post> getPostList() {
+    public List<Postly> getPostList() {
         return postList;
     }
 
@@ -73,7 +91,7 @@ public class Person {
      *
      * @param postList the value to set
      */
-    public void setPostList(List<Post> postList) {
+    public void setPostList(List<Postly> postList) {
         this.postList = postList;
     }
 
@@ -142,5 +160,8 @@ public class Person {
      */
     public void setBeitritt(Date beitritt) {
         this.beitritt = beitritt;
+    }
+
+    public void setPerson(String personUUID) {
     }
 }

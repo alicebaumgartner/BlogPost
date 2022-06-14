@@ -4,27 +4,21 @@
 "name": "Alice Baumgartner",
 "beitritt": "05.09.2018",
 "postListUUID": [
-{"postUUID": "939e0d32-800d-4e12-b94b-8e8a2ff718a4"},
-{"postUUID": "939e0d32-800d-4e12-b94b-8e8a2ff718b4"}, 
-{"postUUID": "939e0d32-800d-4e12-b94b-8e8a2ff718c4"}
+{"postUUID": "3087af5c-426a-465e-ae05-73608b2e61d4"},
+{"postUUID": "8d5b0dbb-6557-44c7-bea7-9f658a2eaa2f"}
 ]},
 {"personUUID": "939e0d32-800d-4e12-b94b-9e10a2ff718a4",
 "username": "MaxMu78",
 "name": "Max Muster",
 "beitritt": "02.02.2019",
 "postListUUID": [
-{"postUUID": "939e0d32-230d-4e12-b94b-8e8a2ff7g8a4"},
-{"postUUID": "939e0d32-800d-4e12-b94b-8e8a43ef718b4"},
-{"postUUID": "939e0d32-800d-4e12-b94b-8e8a2fgg18c4"}
+{"postUUID": "3087af5c-426a-465e-ae05-73608b2e61d4"}
 ]
 },
 {"personUUID": "439h0z367-800f-4e52-b34b-6t8a6zz718a6",
 "username": "Bobimm3",
 "name": "Bob Mustermann",
 "beitritt": "03.03.2012",
-"postListUUID": [
-{"postUUID": "939e0d32-800d-4e12-b94b-8e8a2ff718a4"},
-{"postUUID": "5639e0d32-800d-4e68-b94b-8e8a2ff718b4"},
-{"postUUID": "439e0d32-800d-4e12-b94b-258a2fg718c4"}]
+"postListUUID": []
 }
 ]

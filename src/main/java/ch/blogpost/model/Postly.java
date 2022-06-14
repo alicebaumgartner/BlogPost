@@ -4,10 +4,13 @@ import ch.blogpost.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,25 +18,37 @@ import java.util.List;
 /**
  * a post from a person
  */
-public class Post {
+public class Postly {
+    @FormParam("postUUID")
+    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String postUUID;
 
     @JsonIgnore
-    private Person autor;
+    private Personly autor;
 
+    @FormParam("date")
+    @NotEmpty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm:ss")
     private Date datum;
 
+    @FormParam("text")
+    @NotEmpty
+    @Size(min=1, max = 200)
     private String text;
+
+
+    @FormParam("lesezeit")
+    @NotEmpty
+    @Digits(integer = 300, fraction = 0)
     private int lesezeit;
 
     @JsonIgnore
-    private List<Kommentar> kommentare;
+    private List<Kommentarly> kommentare;
 
-    public Post() {
+    public Postly() {
     }
 
-    public Post(String postUUID, Person autor, Date datum, String text, int lesezeit, List<Kommentar> kommentare) {
+    public Postly(String postUUID, Personly autor, Date datum, String text, int lesezeit, List<Kommentarly> kommentare) {
         this.postUUID = postUUID;
         this.autor = autor;
         this.datum = datum;
@@ -48,15 +63,17 @@ public class Post {
 
 
     public void setAutorUUID(String autorUUID) {
-        setAutor(DataHandler.getInstance().readPersonbyUUID(autorUUID));
+        setAutor(DataHandler.readPersonbyUUID(autorUUID));
     }
+
+
 
     public void setKommentareUUID(ArrayNode kommentareUUID){
         setKommentare(new ArrayList<>());
         for (JsonNode kommentarUUIDNode : kommentareUUID) {
             getKommentare().add(
                     DataHandler
-                            .getInstance()
+
                             .readKommentarbyUUID(
                                     kommentarUUIDNode
                                             .get("kommentarUUID")
@@ -88,7 +105,7 @@ public class Post {
      * gets the autor from the person-object
      * @return autor
      */
-    public Person getAutor() {
+    public Personly getAutor() {
         return autor;
     }
 
@@ -97,7 +114,7 @@ public class Post {
      *
      * @param autor the value to set
      */
-    public void setAutor(Person autor) {
+    public void setAutor(Personly autor) {
         this.autor = autor;
     }
 
@@ -157,7 +174,7 @@ public class Post {
      * gets the kommentar from the kommentar-object
      * @return kommentarlist
      */
-    public List<Kommentar> getKommentare() {
+    public List<Kommentarly> getKommentare() {
         return kommentare;
     }
 
@@ -166,7 +183,10 @@ public class Post {
      *
      * @param kommentare the value to set
      */
-    public void setKommentare(List<Kommentar> kommentare) {
+    public void setKommentare(List<Kommentarly> kommentare) {
         this.kommentare = kommentare;
+    }
+
+    public void setPost(String postUUID) {
     }
 }
