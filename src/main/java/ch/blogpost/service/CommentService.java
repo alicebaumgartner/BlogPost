@@ -147,7 +147,7 @@ public class CommentService {
 
             oldcomment.setPost(oldcomment.getPost());
 
-            DataHandler.updateKommentar();
+            DataHandler.updateComment();
         } else {
             httpStatus = 410;
         }
