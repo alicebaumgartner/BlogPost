@@ -69,7 +69,7 @@ public class PersonService {
      * @param username the name of the person
      * @return Response
      */
-    @PUT
+    @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertPerson(
@@ -98,7 +98,7 @@ public class PersonService {
      * @param username the username of the person
      * @return Response
      */
-    @POST
+    @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updatePerson(
@@ -115,7 +115,7 @@ public class PersonService {
         Personly person = DataHandler.readPersonbyUUID(personUUID);
         if (person != null) {
             person.setUsername(username);
-            person.setName(name);
+            person.setPersonname(name);
             Date beitrittdatum=new SimpleDateFormat("dd.MM.yyyy").parse(beitritt);
             person.setBeitritt(beitrittdatum);
 
@@ -138,6 +138,7 @@ public class PersonService {
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deletePerson(
+            @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
             @QueryParam("uuid") String personUUID
     ) {
         int httpStatus = 200;

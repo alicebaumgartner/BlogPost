@@ -10,9 +10,13 @@ import ch.blogpost.model.Kommentarly;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,12 +78,19 @@ public class KommentarService {
             @Valid @BeanParam Kommentarly kommentar,
             @NotEmpty
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-            @FormParam("personUUID" ) String personUUID
+            @FormParam("personUUID" ) String personUUID,
+            @Size(min=1, max = 300)
+            @FormParam("kommentar" ) String kommentartext,
+            @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
+            @FormParam("datum" ) String date
 
-    ) {
+
+    ) throws ParseException {
 
         kommentar.setPersonUUID(personUUID);
-
+        kommentar.setKommentar(kommentartext);
+        Date datefinal=new SimpleDateFormat("dd.MM.yyyy").parse(date);
+        kommentar.setDate(datefinal);
         DataHandler.insertKommentar(kommentar);
         return Response
                 .status(200)
@@ -100,16 +111,40 @@ public class KommentarService {
             @Valid @BeanParam Kommentarly comment,
             @NotEmpty
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-            @FormParam("personUUID") String personUUID
-    ) {
+            @FormParam("commentuuid") String commentUUID,
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @FormParam("postuuid") String postuuid,
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @FormParam("personUUID") String personUUID,
+            @Size(min=1, max = 300)
+            @FormParam("kommentar" ) String kommentartext,
+            @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
+            @FormParam("datum" ) String date
+    ) throws ParseException {
         int httpStatus = 200;
-        Kommentarly oldcomment = DataHandler.readKommentarbyUUID(comment.getKommentarUUID());
+        Kommentarly oldcomment = DataHandler.readKommentarbyUUID(commentUUID);
         if (oldcomment != null) {
-            oldcomment.setKommentar(comment.getKommentar());
+            if(!kommentartext.isEmpty()){
+                oldcomment.setKommentar(kommentartext);
+            }else {
+                oldcomment.setKommentar(comment.getKommentar());
+            }
+
             oldcomment.setPerson(comment.getPerson());
-            oldcomment.setPersonUUID(personUUID);
+            if(!personUUID.isEmpty()){
+                oldcomment.setPersonUUID(personUUID);
+
+            }else {
+                oldcomment.setPersonUUID(comment.getPersonUUID());
+            }
             oldcomment.setPostUUID(comment.getPost().getPostUUID());
-            oldcomment.setDate(oldcomment.getDate());
+            if(!date.isEmpty()){
+                Date datefinal=new SimpleDateFormat("dd.MM.yyyy").parse(date);
+                oldcomment.setDate(datefinal);
+            }else{
+                oldcomment.setDate(oldcomment.getDate());
+            }
+
             oldcomment.setPost(oldcomment.getPost());
 
             DataHandler.updateKommentar();
@@ -130,7 +165,7 @@ public class KommentarService {
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response deleteBook(
+    public Response deleteComment(
             @NotEmpty
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String kommentarUUID

@@ -27,7 +27,6 @@ public class Postly {
     private Personly autor;
 
     @FormParam("date")
-    @NotEmpty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm:ss")
     private Date datum;
 
@@ -38,7 +37,6 @@ public class Postly {
 
 
     @FormParam("lesezeit")
-    @NotEmpty
     @Digits(integer = 300, fraction = 0)
     private int lesezeit;
 
@@ -68,9 +66,9 @@ public class Postly {
 
 
 
-    public void setKommentareUUID(ArrayNode kommentareUUID){
+    public void setCommentUUID(ArrayNode commentUUID){
         setKommentare(new ArrayList<>());
-        for (JsonNode kommentarUUIDNode : kommentareUUID) {
+        for (JsonNode kommentarUUIDNode : commentUUID) {
             getKommentare().add(
                     DataHandler
 

@@ -4,15 +4,11 @@ import ch.blogpost.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.FormParam;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,10 +31,9 @@ public class Personly {
 
     @FormParam("name")
     @Pattern(regexp = "/^[A-Za-z]+ [A-Za-z]+$/")
-    private String name;
+    private String personname;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
-    @NotEmpty
     private Date beitritt;
 
     public Personly() {
@@ -52,7 +47,7 @@ public class Personly {
         this.postList = postList;
         this.personUUID = personUUID;
         this.username = username;
-        this.name = name;
+        this.personname = name;
         this.beitritt = beitritt;
     }
 
@@ -133,17 +128,17 @@ public class Personly {
      * gets the name
      * @return value of name
      */
-    public String getName() {
-        return name;
+    public String getPersonname() {
+        return personname;
     }
 
     /**
      * sets name
      *
-     * @param name the value to set
+     * @param personname the value to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setPersonname(String personname) {
+        this.personname = personname;
     }
 
     /**

@@ -31,12 +31,12 @@ public class Kommentarly {
 
     @FormParam("date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
-    @NotEmpty
     private Date date;
 
 
+    @NotEmpty
     @FormParam("kommentar")
-    @Size(min = 2, max=100)
+    @Size(min = 1, max=100)
     private String kommentar;
 
     public Kommentarly() {

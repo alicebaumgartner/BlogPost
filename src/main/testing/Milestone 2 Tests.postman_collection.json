@@ -1,0 +1,2236 @@
+{
+	"info": {
+		"_postman_id": "5e5594c2-adc2-4def-a90d-1dd1c69c11cd",
+		"name": "Milestone 2 Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20899808"
+	},
+	"item": [
+		{
+			"name": "DeletePerson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/delete?uuid=d88acfa8-c6c1-4781-9054-4418a751d1c4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePerson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "MusterMann05",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "name",
+						"value": "Muster Mann",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "beitritt",
+						"value": "14.06.2022",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "MusterMann05",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Mann",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePerson_invalid_username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "MusterMann05",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "name",
+						"value": "Muster Mann",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "beitritt",
+						"value": "14.06.2022",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Mus",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Mann",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePerson_invalid_name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "MusterMann05",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "name",
+						"value": "Muster Mann",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "beitritt",
+						"value": "14.06.2022",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "MusterMann05",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "M",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePerson_invalid_date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "MusterMann05",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "name",
+						"value": "Muster Mann",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "beitritt",
+						"value": "14.06.2022",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "MusterMann05",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "M",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.05",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MaxMuster8162!",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Max",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson_invalid_beitritt",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MaxMuster8162!",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Max",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.203",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson_invalid_name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MaxMuster8162!",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Mus",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson_invalid_username",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Ma",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Max",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson_invalid_personUUID(not existing)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 410\", function () {\r",
+							"  pm.response.to.have.status(410);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c5",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MaxMuster8162!",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Max",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson_invalid_personUUID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "d88acfa8-c6c1-4781-9054-4418a75",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MaxMuster8162!",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Muster Max",
+							"type": "text"
+						},
+						{
+							"key": "beitritt",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "uuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "14.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost_invaild_personUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "732389283",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "14.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost_invaild_text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "14.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost_invaild_lesezeit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "14.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost_invaild_datum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "12992",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost_invalidate_text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost_invalidate_datum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.202",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost_invalid_personUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost_invalid_lesezeit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost_invalid_postUUID(not existing)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 410\", function () {\r",
+							"  pm.response.to.have.status(410);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d5",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost_invalid_postUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 410\", function () {\r",
+							"  pm.response.to.have.status(410);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateComment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateComment_invalid_personUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateComment_invalid_kommentar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateComment_invalid_datum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "halloooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.05",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateComment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "commentuuid",
+							"value": "a874804c-6aef-47ee-bba2-ab6c2e93b175",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateComment_invalid_date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.209",
+							"type": "text"
+						},
+						{
+							"key": "commentuuid",
+							"value": "a874804c-6aef-47ee-bba2-ab6c2e93b175",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateComment_invalid_comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						},
+						{
+							"key": "commentuuid",
+							"value": "a874804c-6aef-47ee-bba2-ab6c2e93b175",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateComment_invalid_postUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "commentuuid",
+							"value": "a874804c-6aef-47ee-bba2-ab6c2e93b175",
+							"type": "text"
+						},
+						{
+							"key": "postuuid",
+							"value": "63c3",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateComment_invalid_commenttUUID(not existing)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 410\", function () {\r",
+							"  pm.response.to.have.status(410);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378c",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						},
+						{
+							"key": "commentuuid",
+							"value": "a874804c-6aef-47ee-bba2-ab6c2e93b178",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateComment_invalid_personUUID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 410\", function () {\r",
+							"  pm.response.to.have.status(410);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						},
+						{
+							"key": "commentuuid",
+							"value": "a874804c-6aef-47ee-bba2-ab6c2e93b175",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteComment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/delete?uuid=63c39d84-aace-4f71-b76b-0121d6cc378b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
