@@ -32,7 +32,7 @@ public class Config extends Application {
             HashSet providers = new HashSet<Class<?>>();
             providers.add(PersonService.class);
             providers.add(PostService.class);
-            providers.add(KommentarService.class);
+            providers.add(CommentService.class);
             return providers;
         }
 

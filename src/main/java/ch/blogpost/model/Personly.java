@@ -34,7 +34,7 @@ public class Personly {
     private String personname;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
-    private Date beitritt;
+    private Date entrydate;
 
     public Personly() {
     }
@@ -43,15 +43,15 @@ public class Personly {
     /**
      * creates a Person-object
      */
-    public Personly(List<Postly> postList, String personUUID, String username, String name, Date beitritt) {
+    public Personly(List<Postly> postList, String personUUID, String username, String name, Date entrydate) {
         this.postList = postList;
         this.personUUID = personUUID;
         this.username = username;
         this.personname = name;
-        this.beitritt = beitritt;
+        this.entrydate = entrydate;
     }
 
-/*
+
     public void setPostListUUID(ArrayNode postListUUID){
         setPostList(new ArrayList<>());
         for (JsonNode postUUIDNode : postListUUID) {
@@ -65,13 +65,8 @@ public class Personly {
             );
         }
     }
-*/
-    public void setPostListUUID(ArrayNode postListUUID){
-        setPostList(new ArrayList<>());
-        for (JsonNode postUUIDNode : postListUUID){
-            getPostList().add(DataHandler.readPostlybyUUID(postUUIDNode.get("postUUID").textValue()));
-        }
-    }
+
+
 
     /**
      * gets the postlist from the post-object
@@ -142,19 +137,19 @@ public class Personly {
     }
 
     /**
-     * gets the beitritt
-     * @return value of beitritt
+     * gets the entrydate
+     * @return value of entrydate
      */
-    public Date getBeitritt() {
-        return beitritt;
+    public Date getEntrydate() {
+        return entrydate;
     }
     /**
-     * sets beitritt
+     * sets entrydate
      *
-     * @param beitritt the value to set
+     * @param entrydate the value to set
      */
-    public void setBeitritt(Date beitritt) {
-        this.beitritt = beitritt;
+    public void setEntrydate(Date entrydate) {
+        this.entrydate = entrydate;
     }
 
     public void setPerson(String personUUID) {

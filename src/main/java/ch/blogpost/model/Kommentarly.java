@@ -19,9 +19,9 @@ import java.time.LocalDate;
  * a comment under the post
  */
 public class Kommentarly {
-    @FormParam("kommentarUUID")
+    @FormParam("commentUUID")
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-    private String kommentarUUID;
+    private String commentUUID;
 
     @JsonIgnore
     private Personly person;
@@ -35,9 +35,9 @@ public class Kommentarly {
 
 
     @NotEmpty
-    @FormParam("kommentar")
+    @FormParam("comment")
     @Size(min = 1, max=100)
-    private String kommentar;
+    private String comment;
 
     public Kommentarly() {
     }
@@ -46,12 +46,12 @@ public class Kommentarly {
      * creates a Kommentar-object
      */
 
-    public Kommentarly(String kommentarUUID, Personly person, Postly post, Date date, String kommentar) {
-        this.kommentarUUID = kommentarUUID;
+    public Kommentarly(String commentUUID, Personly person, Postly post, Date date, String comment) {
+        this.commentUUID = commentUUID;
         this.person = person;
         this.post = post;
         this.date = date;
-        this.kommentar = kommentar;
+        this.comment = comment;
     }
 
 
@@ -117,37 +117,37 @@ public class Kommentarly {
     }
 
     /**
-     * gets the kommentar
-     * @return value of kommentar
+     * gets the comment
+     * @return value of comment
      */
     public String getKommentar() {
-        return kommentar;
+        return comment;
     }
 
     /**
      * sets publisher
      *
-     * @param kommentar the value to set
+     * @param comment the value to set
      */
-    public void setKommentar(String kommentar) {
-        this.kommentar = kommentar;
+    public void setKommentar(String comment) {
+        this.comment = comment;
     }
 
     /**
-     * gets the kommentarUUID
-     * @return value of kommentarUUID
+     * gets the commentUUID
+     * @return value of commentUUID
      */
     public String getKommentarUUID() {
-        return kommentarUUID;
+        return commentUUID;
     }
 
     /**
-     * sets kommentarUUID
+     * sets commentUUID
      *
-     * @param kommentarUUID the value to set
+     * @param commentUUID the value to set
      */
-    public void setKommentarUUID(String kommentarUUID) {
-        this.kommentarUUID = kommentarUUID;
+    public void setKommentarUUID(String commentUUID) {
+        this.commentUUID = commentUUID;
     }
 
     /**

@@ -79,11 +79,13 @@ public class PersonService {
             @Pattern(regexp = "^[A-Za-z]+ [A-Za-z]+$")
             @FormParam("name") String name,
             @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("beitritt") String beitritt
-    ) {
+            @FormParam("beitritt") String entrydate
+    ) throws ParseException {
         Personly person = new Personly();
         person.setPersonUUID(UUID.randomUUID().toString());
         person.setUsername(username);
+        Date entrydatefinal=new SimpleDateFormat("dd.MM.yyyy").parse(entrydate);
+        person.setEntrydate(entrydatefinal);
 
         DataHandler.insertPerson(person);
         return Response
@@ -109,15 +111,15 @@ public class PersonService {
             @Pattern(regexp = "^[A-Za-z]+ [A-Za-z]+$")
             @FormParam("name") String name,
             @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("beitritt") String beitritt
+            @FormParam("beitritt") String entrydate
     ) throws ParseException {
         int httpStatus = 200;
         Personly person = DataHandler.readPersonbyUUID(personUUID);
         if (person != null) {
             person.setUsername(username);
             person.setPersonname(name);
-            Date beitrittdatum=new SimpleDateFormat("dd.MM.yyyy").parse(beitritt);
-            person.setBeitritt(beitrittdatum);
+            Date entrydatefinal=new SimpleDateFormat("dd.MM.yyyy").parse(entrydate);
+            person.setEntrydate(entrydatefinal);
 
             DataHandler.updatePerson();
         } else {

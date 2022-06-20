@@ -22,7 +22,7 @@ import java.util.List;
 
 public final class DataHandler {
 
-    private static List<Kommentarly> kommentarlyList;
+    private static List<Kommentarly> commentyList;
     private static List<Postly> postlyList;
     private static List<Personly> personlyList;
 
@@ -166,42 +166,43 @@ public final class DataHandler {
      * @return the comment (null=not found)
      */
     public static Kommentarly readKommentarbyUUID(String kommmentarUUID) {
-        Kommentarly kommentarly = null;
+        Kommentarly commenty = null;
         for (Kommentarly entry : getKommentarlist()) {
             if (entry.getKommentarUUID().equals(kommmentarUUID)) {
-                kommentarly = entry;
+                commenty = entry;
             }
         }
-        return kommentarly;
+        return commenty;
     }
 
     /**
      * inserts a new comment into the commentlist
      *
-     * @param kommentarly the person to be saved
+     * @param commenty the person to be saved
      */
-    public static void insertKommentar(Kommentarly kommentarly) {
-        getKommentarlist().add(kommentarly);
-        writeKommentarJSON();
+    public static void insertKommentar(Kommentarly commenty) {
+        getKommentarlist().add(commenty);
+        writeCommentJSON();
     }
 
     /**
      * updates the commentlist
      */
-    public static void updateKommentar() {
-        writeKommentarJSON();
+    public static void updateComment() {
+        writeCommentJSON();
     }
 
     /**
-     * deletes a Kommentar identified by the kommentarUUID
+     * deletes a comment
+     * identified by the kommentarUUID
      * @param kommentarUUID  the key
      * @return  success=true/false
      */
-    public static boolean deleteKommentar(String kommentarUUID) {
-        Kommentarly kommentarly = readKommentarbyUUID(kommentarUUID);
-        if (kommentarly != null) {
-            getKommentarlist().remove(kommentarly);
-            writeKommentarJSON();
+    public static boolean deleteComment(String kommentarUUID) {
+        Kommentarly commenty = readKommentarbyUUID(kommentarUUID);
+        if (commenty != null) {
+            getKommentarlist().remove(commenty);
+            writeCommentJSON();
             return true;
         } else {
             return false;
@@ -248,9 +249,9 @@ public final class DataHandler {
     }
 
     /**
-     * reads the publishers from the JSON-file
+     * reads the comments from the JSON-file
      */
-    private static void readKommentarJSON() {
+    private static void readCommentJSON() {
         try {
             byte[] jsonData = Files.readAllBytes(
                     Paths.get(
@@ -258,9 +259,9 @@ public final class DataHandler {
                     )
             );
             ObjectMapper objectMapper = new ObjectMapper();
-            Kommentarly[] kommentare = objectMapper.readValue(jsonData, Kommentarly[].class);
-            for (Kommentarly kommentarly : kommentare) {
-                getKommentarlist().add(kommentarly);
+            Kommentarly[] commentyList = objectMapper.readValue(jsonData, Kommentarly[].class);
+            for (Kommentarly commenty : commentyList) {
+                getKommentarlist().add(commenty);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -270,7 +271,7 @@ public final class DataHandler {
     /**
      * writes the Kommentarlist to the JSON-file
      */
-    private static void writeKommentarJSON() {
+    private static void writeCommentJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         FileOutputStream fileOutputStream = null;
@@ -377,31 +378,38 @@ public final class DataHandler {
 
 
     /**
-     * gets kommentarlist
+     * gets commentist
      *
-     * @return value of kommentarlist
+     * @return value of commentist
      */
 
     private static List<Kommentarly> getKommentarlist() {
-        if(kommentarlyList == null) {
+        if(commentyList == null) {
             setKommentarlist(new ArrayList<>());
-            readKommentarJSON();
+            readCommentJSON();
         }
 
-        return kommentarlyList;
+        return commentyList;
     }
 
     /**
-     * sets kommentarlist
+     * sets commentist
      *
-     * @param kommentarlist the value to set
+     * @param commentist the value to set
      */
 
-    private static void setKommentarlist(List<Kommentarly> kommentarlist) {
-        DataHandler.kommentarlyList = kommentarlist;
+    private static void setKommentarlist(List<Kommentarly> commentist) {
+        DataHandler.commentyList = commentist;
     }
 
 
-
-
+    public static Postly readPostbyUUID(String postUUID) {
+        Postly postly = null;
+        for (Postly entry : getPostlylist()) {
+            if (entry.getPostUUID().equals(postUUID)) {
+                postly = entry;
+            }
+        }
+        return postly;
+    }
 }

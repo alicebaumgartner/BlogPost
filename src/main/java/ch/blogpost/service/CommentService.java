@@ -23,7 +23,7 @@ import java.util.List;
  * services for reading, adding, changing and deleting comments
  */
 @Path("comment")
-public class KommentarService {
+public class CommentService {
 
 
         /**
@@ -101,7 +101,7 @@ public class KommentarService {
 
     /**
      * updates a new comment
-     * @param personUUID the uuid of the person
+     * @param postuuid the uuid of the post
      * @return Response
      */
     @PUT
@@ -171,7 +171,7 @@ public class KommentarService {
             @QueryParam("uuid") String kommentarUUID
     ) {
         int httpStatus = 200;
-        if (!DataHandler.deleteKommentar(kommentarUUID)) {
+        if (!DataHandler.deleteComment(kommentarUUID)) {
             httpStatus = 410;
         }
         return Response
