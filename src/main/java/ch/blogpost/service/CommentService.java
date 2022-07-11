@@ -167,7 +167,7 @@ public class CommentService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteComment(
             @NotEmpty
-            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
             @QueryParam("uuid") String kommentarUUID
     ) {
         int httpStatus = 200;

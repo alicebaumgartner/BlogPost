@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class Postly {
     @FormParam("postUUID")
-    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+    @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
     private String postUUID;
 
     @JsonIgnore

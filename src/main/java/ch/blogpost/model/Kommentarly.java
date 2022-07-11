@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
 import javax.ws.rs.FormParam;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -20,7 +22,7 @@ import java.time.LocalDate;
  */
 public class Kommentarly {
     @FormParam("commentUUID")
-    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+    @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
     private String commentUUID;
 
     @JsonIgnore
@@ -29,10 +31,8 @@ public class Kommentarly {
     @JsonIgnore
     private Postly post;
 
-    @FormParam("date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private Date date;
-
 
     @NotEmpty
     @FormParam("comment")
@@ -54,7 +54,27 @@ public class Kommentarly {
         this.comment = comment;
     }
 
+    /**
+     * sets the date from the request
+     *
+     * @param dateFromRequest
+     */
+    @FormParam("date")
+    public void setDateFromRequest(String dateFromRequest) {
+        if (dateFromRequest == null || dateFromRequest.isEmpty()) {
+            return;
+        }
+        try {
+            setDate(
+                    new SimpleDateFormat("dd.MM.yyyy")
+                            .parse(dateFromRequest)
+            );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @FormParam("personUUID")
     public void setPersonUUID(String personUUID) {
         setPerson(new Personly());
         Personly person = DataHandler.readPersonbyUUID(personUUID);
@@ -63,6 +83,7 @@ public class Kommentarly {
         setPerson(DataHandler.readPersonbyUUID(personUUID));
     }
 
+    @FormParam("postUUID")
     public void setPostUUID(String postUUID) {
         setPost(new Postly());
         Postly post = DataHandler.readPostlybyUUID(postUUID);

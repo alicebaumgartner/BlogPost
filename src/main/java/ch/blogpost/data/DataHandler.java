@@ -3,6 +3,7 @@ package ch.blogpost.data;
 import ch.blogpost.model.Kommentarly;
 import ch.blogpost.model.Personly;
 import ch.blogpost.model.Postly;
+import ch.blogpost.model.User;
 import ch.blogpost.service.Config;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -25,6 +26,7 @@ public final class DataHandler {
     private static List<Kommentarly> commentyList;
     private static List<Postly> postlyList;
     private static List<Personly> personlyList;
+    private static List<User> userList;
 
     /**
      * private constructor defeats instantiation
@@ -210,6 +212,7 @@ public final class DataHandler {
     }
 
 
+
     /**
      * reads the person from the JSON-file
      */
@@ -238,9 +241,9 @@ public final class DataHandler {
         FileOutputStream fileOutputStream = null;
         Writer fileWriter;
 
-        String bookPath = Config.getProperty("personJSON");
+        String personPath = Config.getProperty("personJSON");
         try {
-            fileOutputStream = new FileOutputStream(bookPath);
+            fileOutputStream = new FileOutputStream(personPath);
             fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
             objectWriter.writeValue(fileWriter, getpersonlist());
         } catch (IOException ex) {
@@ -412,4 +415,66 @@ public final class DataHandler {
         }
         return postly;
     }
+    /**
+     * reads the users from the JSON-file
+     */
+    private static void readUserJSON() {
+        try {
+            byte[] jsonData = Files.readAllBytes(
+                    Paths.get(
+                            Config.getProperty("userJSON")
+                    )
+            );
+            ObjectMapper objectMapper = new ObjectMapper();
+            User[] users = objectMapper.readValue(jsonData, User[].class);
+            for (User user : users) {
+                getUserList().add(user);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * gets userList
+     *
+     * @return value of userList
+     */
+
+    public static List<User> getUserList() {
+        if (DataHandler.userList == null) {
+            DataHandler.setUserList(new ArrayList<>());
+            readUserJSON();
+        }
+        return userList;
+    }
+
+    /**
+     * sets userList
+     *
+     * @param userList the value to set
+     */
+
+    public static void setUserList(List<User> userList) {
+        DataHandler.userList = userList;
+    }
+
+    /**
+     * reads a user by the username/password provided
+     *
+     * @param username
+     * @param password
+     * @return user-object
+     */
+    public static User readUser(String username, String password) {
+        User user = new User();
+        for (User entry : getUserList()) {
+            if (entry.getUsername().equals(username) &&
+                    entry.getPassword().equals(password)) {
+                user = entry;
+            }
+        }
+        return user;
+    }
+
 }

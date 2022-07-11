@@ -80,7 +80,7 @@
 						"disabled": true
 					},
 					{
-						"key": "beitritt",
+						"key": "entrydate",
 						"value": "14.06.2022",
 						"type": "text",
 						"disabled": true
@@ -106,7 +106,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -161,7 +161,7 @@
 						"disabled": true
 					},
 					{
-						"key": "beitritt",
+						"key": "entrydate",
 						"value": "14.06.2022",
 						"type": "text",
 						"disabled": true
@@ -187,7 +187,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -242,7 +242,7 @@
 						"disabled": true
 					},
 					{
-						"key": "beitritt",
+						"key": "entrydate",
 						"value": "14.06.2022",
 						"type": "text",
 						"disabled": true
@@ -268,7 +268,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -323,7 +323,7 @@
 						"disabled": true
 					},
 					{
-						"key": "beitritt",
+						"key": "entrydate",
 						"value": "14.06.2022",
 						"type": "text",
 						"disabled": true
@@ -349,7 +349,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.05",
 							"type": "text"
 						}
@@ -410,7 +410,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -434,7 +434,7 @@
 			"response": []
 		},
 		{
-			"name": "UpdatePerson_invalid_beitritt",
+			"name": "UpdatePerson_invalid_entrydate",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -471,7 +471,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.203",
 							"type": "text"
 						}
@@ -532,7 +532,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -593,7 +593,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -654,7 +654,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}
@@ -715,7 +715,7 @@
 							"type": "text"
 						},
 						{
-							"key": "beitritt",
+							"key": "entrydate",
 							"value": "14.06.2022",
 							"type": "text"
 						}

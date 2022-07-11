@@ -4,14 +4,13 @@ import ch.blogpost.data.DataHandler;
 import ch.blogpost.model.Personly;
 
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,7 +45,7 @@ public class PersonService {
         @Path("read")
         @Produces(MediaType.APPLICATION_JSON)
         public Response readPerson(
-                @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
+                @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
                 @QueryParam("uuid") String personUUID
         ) {
             int httpStatus = 200;
@@ -66,28 +65,17 @@ public class PersonService {
 
     /**
      * inserts a new Person
-     * @param username the name of the person
      * @return Response
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertPerson(
-            @NotEmpty
-            @Pattern(regexp = "^[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
-            @FormParam("username") String username,
-            @Pattern(regexp = "^[A-Za-z]+ [A-Za-z]+$")
-            @FormParam("name") String name,
-            @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("beitritt") String entrydate
-    ) throws ParseException {
-        Personly person = new Personly();
-        person.setPersonUUID(UUID.randomUUID().toString());
-        person.setUsername(username);
-        Date entrydatefinal=new SimpleDateFormat("dd.MM.yyyy").parse(entrydate);
-        person.setEntrydate(entrydatefinal);
+            @Valid @BeanParam Personly personly
+    ) {
 
-        DataHandler.insertPerson(person);
+        personly.setPersonUUID(UUID.randomUUID().toString());
+        DataHandler.insertPerson(personly);
         return Response
                 .status(200)
                 .entity("")
@@ -97,31 +85,29 @@ public class PersonService {
     /**
      * updates a person
      * @param personUUID the key
-     * @param username the username of the person
      * @return Response
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updatePerson(
-            @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
-            @FormParam("uuid") String personUUID,
-            @Pattern(regexp = "^[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
-            @FormParam("username") String username,
-            @Pattern(regexp = "^[A-Za-z]+ [A-Za-z]+$")
-            @FormParam("name") String name,
-            @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("beitritt") String entrydate
+            @Valid @BeanParam Personly personly,
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @FormParam("personUUID") String personUUID
+
     ) throws ParseException {
         int httpStatus = 200;
-        Personly person = DataHandler.readPersonbyUUID(personUUID);
-        if (person != null) {
-            person.setUsername(username);
-            person.setPersonname(name);
-            Date entrydatefinal=new SimpleDateFormat("dd.MM.yyyy").parse(entrydate);
-            person.setEntrydate(entrydatefinal);
+        Personly altPerson = DataHandler.readPersonbyUUID(personUUID);
+        if (altPerson != null) {
+            altPerson.setUsername(personly.getUsername());
+            altPerson.setFullname(personly.getFullname());
+            altPerson.setEntrydate(personly.getEntrydate());
 
-            DataHandler.updatePerson();
+            try {
+                DataHandler.updatePerson();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         } else {
             httpStatus = 410;
         }
@@ -140,7 +126,8 @@ public class PersonService {
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deletePerson(
-            @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
+            @NotEmpty
+            @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
             @QueryParam("uuid") String personUUID
     ) {
         int httpStatus = 200;

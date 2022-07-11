@@ -1,5 +1,7 @@
 package ch.blogpost.service;
 
+import ch.blogpost.util.AuthorizationFilter;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.io.FileInputStream;
@@ -33,6 +35,8 @@ public class Config extends Application {
             providers.add(PersonService.class);
             providers.add(PostService.class);
             providers.add(CommentService.class);
+            providers.add(UserService.class);
+            providers.add(AuthorizationFilter.class);
             return providers;
         }
 

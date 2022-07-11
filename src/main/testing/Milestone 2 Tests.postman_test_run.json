@@ -172,7 +172,7 @@
 		},
 		{
 			"id": "e5141c7d-6d60-4c28-a2cd-5eb84454d23a",
-			"name": "UpdatePerson_invalid_beitritt",
+			"name": "UpdatePerson_invalid_entrydate",
 			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
 			"time": 5,
 			"responseCode": {

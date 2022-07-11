@@ -72,10 +72,10 @@ public class PostService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertPost(
             @Valid @BeanParam Postly post,
-            @NotEmpty
+
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @FormParam("personUUID") String personUUID,
-            @Size(min=1, max = 300)
+            
             @FormParam("text") String text,
             @Pattern(regexp = "[^0-9]*")
             @FormParam("lesezeit") Integer lesezeit,

@@ -7,8 +7,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.FormParam;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,17 +26,21 @@ public class Personly {
     private List<Postly> postList;
 
     @FormParam("personUUID")
-    @Pattern(regexp = "(?=[0-9]{13}|[- 0-9]{17})97[89](-[0-9]{1,5}){3}-[0-9]")
+    @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
     private String personUUID;
 
+    @NotEmpty
     @FormParam("username")
-    @Pattern(regexp = "^[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
+    @Pattern(regexp = "[A-Za-z]{1}[a-zA-Z0-9!?#$&`.-_]{4,30}")
     private String username;
 
-    @FormParam("name")
-    @Pattern(regexp = "/^[A-Za-z]+ [A-Za-z]+$/")
-    private String personname;
+    @NotEmpty
+    @FormParam("fullname")
+    @Pattern(regexp = "[A-Za-z]+ [A-Za-z]+")
+    private String fullname;
 
+
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private Date entrydate;
 
@@ -47,15 +55,34 @@ public class Personly {
         this.postList = postList;
         this.personUUID = personUUID;
         this.username = username;
-        this.personname = name;
+        this.fullname = name;
         this.entrydate = entrydate;
     }
 
+    /**
+     * sets the date from the request
+     *
+     * @param dateFromRequest
+     */
+    @FormParam("entrydate")
+    public void setDateFromRequest(String dateFromRequest) {
+        if (dateFromRequest == null || dateFromRequest.isEmpty()) {
+            return;
+        }
+        try {
+            setEntrydate(
+                    new SimpleDateFormat("dd.MM.yyyy")
+                            .parse(dateFromRequest)
+            );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public void setPostListUUID(ArrayNode postListUUID){
+    public void setPostListUUID(ArrayNode postListUUID) {
         setPostList(new ArrayList<>());
         for (JsonNode postUUIDNode : postListUUID) {
-           getPostList().add(
+            getPostList().add(
                     DataHandler
                             .readPostbyUUID(
                                     postUUIDNode
@@ -67,9 +94,9 @@ public class Personly {
     }
 
 
-
     /**
      * gets the postlist from the post-object
+     *
      * @return postlist
      */
     public List<Postly> getPostList() {
@@ -87,6 +114,7 @@ public class Personly {
 
     /**
      * gets the personUUID
+     *
      * @return value of personUUID
      */
     public String getPersonUUID() {
@@ -104,6 +132,7 @@ public class Personly {
 
     /**
      * gets the username
+     *
      * @return value of username
      */
     public String getUsername() {
@@ -121,28 +150,31 @@ public class Personly {
 
     /**
      * gets the name
+     *
      * @return value of name
      */
-    public String getPersonname() {
-        return personname;
+    public String getFullname() {
+        return fullname;
     }
 
     /**
      * sets name
      *
-     * @param personname the value to set
+     * @param fullname the value to set
      */
-    public void setPersonname(String personname) {
-        this.personname = personname;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     /**
      * gets the entrydate
+     *
      * @return value of entrydate
      */
     public Date getEntrydate() {
         return entrydate;
     }
+
     /**
      * sets entrydate
      *
