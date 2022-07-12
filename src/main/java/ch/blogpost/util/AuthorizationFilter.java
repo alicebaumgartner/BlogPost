@@ -12,7 +12,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
-
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * checks the authorization for the services
@@ -25,7 +26,7 @@ public class AuthorizationFilter implements javax.ws.rs.container.ContainerReque
     @Context
     private ResourceInfo resourceInfo;
 
-    private static final String AUTHORIZATION_PROPERTY = "Authorization";
+    private static final String AUTHORIZATION_PROPERTY = "cookie";
 
     @Override
     public void filter(ContainerRequestContext requestContext) {
@@ -68,20 +69,22 @@ public class AuthorizationFilter implements javax.ws.rs.container.ContainerReque
      */
     private String getToken(MultivaluedMap<String, String> headers) {
         String token = "";
-        final List<String> authorizations = headers.get(AUTHORIZATION_PROPERTY);
-        if (authorizations != null) {
-            for (String entry : authorizations) {
-                String[] data = entry.split(" ");
-                if (data[0].equals("Bearer")) {
-                    token = data[1];
-                }
-            }
 
-            final Map<String, String> claims = JWToken.readClaims(token);
-            if (claims.isEmpty()) return null;
-            return claims.get("role");
-        } else {
-            return null;
+        String roleOutput;
+
+        try {
+            token = headers.get(AUTHORIZATION_PROPERTY).get(0);
+
+            if (!token.equals("")) {
+                roleOutput = token
+                        .substring(0, token.indexOf(";"))
+                        .substring(token.indexOf("=") + 1);
+            } else {
+                roleOutput = "guest";
+            }
+        }catch (Exception e){
+            roleOutput = "guest";
         }
+        return roleOutput;
     }
 }
