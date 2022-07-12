@@ -266,6 +266,29 @@
 		},
 		{
 			"name": "2FA User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -291,6 +314,631 @@
 						"resource",
 						"user",
 						"2fa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePerson_not_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/delete?uuid=d9c1ba31-178c-4f7b-a95e-18b4623bfcf1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "d9c1ba31-178c-4f7b-a95e-18b4623bfcf1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePersonnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "MusterMann05",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "name",
+						"value": "Muster Mann",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "beitritt",
+						"value": "14.06.2022",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "MusterMann05",
+							"type": "text"
+						},
+						{
+							"key": "fullname",
+							"value": "Max Max",
+							"type": "text"
+						},
+						{
+							"key": "entrydate",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePersonnot_authorized",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personUUID",
+							"value": "5e88528e-5666-420a-8fe5-f6f479a943b7",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "MaxMuster8162!",
+							"type": "text"
+						},
+						{
+							"key": "fullname",
+							"value": "Muster Max",
+							"type": "text"
+						},
+						{
+							"key": "entrydate",
+							"value": "14.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePostnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "uuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"person",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePostnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "14.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePostnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePostnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "3087af5c-426a-465e-ae05-73608b2e61d4",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hallo",
+							"type": "text"
+						},
+						{
+							"key": "lesezeit",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "19.07.2005",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"postly",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCommentnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pswadmin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCommentnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "commentuuid",
+							"value": "f1158d0d-af7b-4c27-97d1-cac1f2ea021a",
+							"type": "text"
+						},
+						{
+							"key": "personuuid",
+							"value": "d88acfa8-c6c1-4781-9054-4418a751d1c4",
+							"type": "text"
+						},
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						},
+						{
+							"key": "kommentar",
+							"value": "Halloooooooo",
+							"type": "text"
+						},
+						{
+							"key": "datum",
+							"value": "20.06.2022",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCommentnot_authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"  pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postuuid",
+							"value": "63c39d84-aace-4f71-b76b-0121d6cc378b",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/delete?uuid=82c9566d-0ced-43d9-9dc8-5571ecf06711",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"BlogPost-1.0-SNAPSHOT",
+						"resource",
+						"comment",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "82c9566d-0ced-43d9-9dc8-5571ecf06711"
+						}
 					]
 				}
 			},

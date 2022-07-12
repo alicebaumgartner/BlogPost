@@ -1,18 +1,18 @@
 {
-	"id": "dc4ada17-4c24-49f7-aa94-a9664b4cb034",
+	"id": "61187790-6cf6-416a-ac44-53f6e5ddff7e",
 	"name": "Milestone 3 Tests",
-	"timestamp": "2022-07-12T12:41:31.700Z",
+	"timestamp": "2022-07-12T15:31:31.172Z",
 	"collection_id": "20899808-ddd278df-eb4f-4131-b5d7-9cd3cfd57904",
 	"folder_id": 0,
 	"environment_id": "0",
-	"totalPass": 4,
-	"totalFail": 1,
+	"totalPass": 12,
+	"totalFail": 3,
 	"results": [
 		{
 			"id": "57ad58e9-a304-4c52-b167-069c0cc450b3",
 			"name": "Vaild_admin_Login",
 			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
-			"time": 9,
+			"time": 604,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -27,7 +27,7 @@
 				}
 			},
 			"times": [
-				9
+				604
 			],
 			"allTests": [
 				{
@@ -39,7 +39,7 @@
 			"id": "c88c1ae0-61c9-4042-a41f-b277a0c4b486",
 			"name": "invalid_admin_Login",
 			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
-			"time": 6,
+			"time": 10,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found"
@@ -54,7 +54,7 @@
 				}
 			},
 			"times": [
-				6
+				10
 			],
 			"allTests": [
 				{
@@ -66,7 +66,7 @@
 			"id": "092eae95-3246-4cc8-a6be-ea6beb66f46d",
 			"name": "Vaild_user_Login",
 			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
-			"time": 16,
+			"time": 10,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -81,7 +81,7 @@
 				}
 			},
 			"times": [
-				16
+				10
 			],
 			"allTests": [
 				{
@@ -93,7 +93,7 @@
 			"id": "2cd15479-0b48-41d6-ad89-41afbb038f48",
 			"name": "Invalid_user_Login",
 			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
-			"time": 9,
+			"time": 7,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found"
@@ -108,7 +108,7 @@
 				}
 			},
 			"times": [
-				9
+				7
 			],
 			"allTests": [
 				{
@@ -120,7 +120,7 @@
 			"id": "15562b08-4dea-42e6-9aa2-ee6aee292347",
 			"name": "2FA User",
 			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/2fa",
-			"time": 6,
+			"time": 13,
 			"responseCode": {
 				"code": 500,
 				"name": "Internal Server Error"
@@ -135,17 +135,287 @@
 				}
 			},
 			"times": [
-				6
+				13
 			],
 			"allTests": [
 				{
 					"Status code is 200": false
 				}
 			]
+		},
+		{
+			"id": "f6b660e9-f906-4f85-913b-7326a7da7b38",
+			"name": "DeletePerson_not_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/delete?uuid=d9c1ba31-178c-4f7b-a95e-18b4623bfcf1",
+			"time": 7,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "0ab1cff3-d024-4028-9c84-fc04eb688832",
+			"name": "CreatePersonnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/create",
+			"time": 6,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "85ee555d-41a8-46cc-a27f-9a98690b5b6d",
+			"name": "UpdatePersonnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/update",
+			"time": 6,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "0d7c8605-2611-4e96-a247-927b066225df",
+			"name": "DeletePostnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/person/delete",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 401": false
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 401": false
+				}
+			]
+		},
+		{
+			"id": "bc01ad19-8366-4494-bb3f-17dd13fa4545",
+			"name": "CreatePostnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/create",
+			"time": 7,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "d95614fb-da67-4405-af0f-593549588ef4",
+			"name": "UpdatePostnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/update",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "3da464e2-326c-4eb9-9e73-ad13415b5091",
+			"name": "UpdatePostnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/postly/update",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "2fd755b3-c71c-4f75-a445-3ec5afccb477",
+			"name": "CreateCommentnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/create",
+			"time": 8,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "22741ba0-4822-4bc9-b085-66375c8eb319",
+			"name": "UpdateCommentnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/update",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "3d8d7e9d-8184-46e6-b96d-76beb4308631",
+			"name": "DeleteCommentnot_authorized",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/comment/delete?uuid=82c9566d-0ced-43d9-9dc8-5571ecf06711",
+			"time": 2,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 401": false
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				2
+			],
+			"allTests": [
+				{
+					"Status code is 401": false
+				}
+			]
 		}
 	],
 	"count": 1,
-	"totalTime": 46,
+	"totalTime": 699,
 	"collection": {
 		"requests": [
 			{
@@ -167,6 +437,46 @@
 			{
 				"id": "15562b08-4dea-42e6-9aa2-ee6aee292347",
 				"method": "POST"
+			},
+			{
+				"id": "f6b660e9-f906-4f85-913b-7326a7da7b38",
+				"method": "DELETE"
+			},
+			{
+				"id": "0ab1cff3-d024-4028-9c84-fc04eb688832",
+				"method": "POST"
+			},
+			{
+				"id": "85ee555d-41a8-46cc-a27f-9a98690b5b6d",
+				"method": "PUT"
+			},
+			{
+				"id": "0d7c8605-2611-4e96-a247-927b066225df",
+				"method": "DELETE"
+			},
+			{
+				"id": "bc01ad19-8366-4494-bb3f-17dd13fa4545",
+				"method": "POST"
+			},
+			{
+				"id": "d95614fb-da67-4405-af0f-593549588ef4",
+				"method": "PUT"
+			},
+			{
+				"id": "3da464e2-326c-4eb9-9e73-ad13415b5091",
+				"method": "PUT"
+			},
+			{
+				"id": "2fd755b3-c71c-4f75-a445-3ec5afccb477",
+				"method": "POST"
+			},
+			{
+				"id": "22741ba0-4822-4bc9-b085-66375c8eb319",
+				"method": "PUT"
+			},
+			{
+				"id": "3d8d7e9d-8184-46e6-b96d-76beb4308631",
+				"method": "DELETE"
 			}
 		]
 	}
