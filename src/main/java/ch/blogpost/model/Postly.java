@@ -24,11 +24,11 @@ public class Postly {
     private String postUUID;
 
     @JsonIgnore
-    private Personly autor;
+    private Personly author;
 
     @FormParam("date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm:ss")
-    private Date datum;
+    private Date postdate;
 
     @FormParam("text")
     @NotEmpty
@@ -36,23 +36,23 @@ public class Postly {
     private String text;
 
 
-    @FormParam("lesezeit")
+    @FormParam("readingtime")
     @Digits(integer = 300, fraction = 0)
-    private int lesezeit;
+    private int readingtime;
 
     @JsonIgnore
-    private List<Kommentarly> kommentare;
+    private List<Commentarly> comments;
 
     public Postly() {
     }
 
-    public Postly(String postUUID, Personly autor, Date datum, String text, int lesezeit, List<Kommentarly> kommentare) {
+    public Postly(String postUUID, Personly author, Date postdate, String text, int readingtime, List<Commentarly> comments) {
         this.postUUID = postUUID;
-        this.autor = autor;
-        this.datum = datum;
+        this.author = author;
+        this.postdate = postdate;
         this.text = text;
-        this.lesezeit = lesezeit;
-        this.kommentare = kommentare;
+        this.readingtime = readingtime;
+        this.comments = comments;
     }
 
     /**
@@ -61,15 +61,15 @@ public class Postly {
 
 
     public void setAutorUUID(String autorUUID) {
-        setAutor(DataHandler.readPersonbyUUID(autorUUID));
+        setAuthor(DataHandler.readPersonbyUUID(autorUUID));
     }
 
 
 
     public void setCommentUUID(ArrayNode commentUUID){
-        setKommentare(new ArrayList<>());
+        setComments(new ArrayList<>());
         for (JsonNode kommentarUUIDNode : commentUUID) {
-            getKommentare().add(
+            getComments().add(
                     DataHandler
 
                             .readKommentarbyUUID(
@@ -103,34 +103,34 @@ public class Postly {
      * gets the autor from the person-object
      * @return autor
      */
-    public Personly getAutor() {
-        return autor;
+    public Personly getAuthor() {
+        return author;
     }
 
     /**
      * sets autor
      *
-     * @param autor the value to set
+     * @param author the value to set
      */
-    public void setAutor(Personly autor) {
-        this.autor = autor;
+    public void setAuthor(Personly author) {
+        this.author = author;
     }
 
     /**
      * gets the datum
      * @return datum
      */
-    public Date getDatum() {
-        return datum;
+    public Date getPostdate() {
+        return postdate;
     }
 
     /**
      * sets datum
      *
-     * @param datum the value to set
+     * @param postdate the value to set
      */
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setPostdate(Date postdate) {
+        this.postdate = postdate;
     }
 
     /**
@@ -155,34 +155,34 @@ public class Postly {
      * gets the lesezeit
      * @return lesezeit
      */
-    public int getLesezeit() {
-        return lesezeit;
+    public int getReadingtime() {
+        return readingtime;
     }
 
     /**
      * sets lesezeit
      *
-     * @param lesezeit the value to set
+     * @param readingtime the value to set
      */
-    public void setLesezeit(int lesezeit) {
-        this.lesezeit = lesezeit;
+    public void setReadingtime(int readingtime) {
+        this.readingtime = readingtime;
     }
 
     /**
      * gets the kommentar from the kommentar-object
      * @return kommentarlist
      */
-    public List<Kommentarly> getKommentare() {
-        return kommentare;
+    public List<Commentarly> getComments() {
+        return comments;
     }
 
     /**
      * sets kommentarlist
      *
-     * @param kommentare the value to set
+     * @param comments the value to set
      */
-    public void setKommentare(List<Kommentarly> kommentare) {
-        this.kommentare = kommentare;
+    public void setComments(List<Commentarly> comments) {
+        this.comments = comments;
     }
 
     public void setPost(String postUUID) {

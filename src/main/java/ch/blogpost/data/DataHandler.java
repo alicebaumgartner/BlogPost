@@ -1,6 +1,6 @@
 package ch.blogpost.data;
 
-import ch.blogpost.model.Kommentarly;
+import ch.blogpost.model.Commentarly;
 import ch.blogpost.model.Personly;
 import ch.blogpost.model.Postly;
 import ch.blogpost.model.User;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public final class DataHandler {
 
-    private static List<Kommentarly> commentyList;
+    private static List<Commentarly> commentyList;
     private static List<Postly> postlyList;
     private static List<Personly> personlyList;
     private static List<User> userList;
@@ -158,7 +158,7 @@ public final class DataHandler {
      * reads all comments
      * @return list of comments
      */
-    public static List<Kommentarly> readallKommentar() {
+    public static List<Commentarly> readallKommentar() {
         return getKommentarlist();
     }
 
@@ -167,9 +167,9 @@ public final class DataHandler {
      * @param kommmentarUUID
      * @return the comment (null=not found)
      */
-    public static Kommentarly readKommentarbyUUID(String kommmentarUUID) {
-        Kommentarly commenty = null;
-        for (Kommentarly entry : getKommentarlist()) {
+    public static Commentarly readKommentarbyUUID(String kommmentarUUID) {
+        Commentarly commenty = null;
+        for (Commentarly entry : getKommentarlist()) {
             if (entry.getKommentarUUID().equals(kommmentarUUID)) {
                 commenty = entry;
             }
@@ -182,7 +182,7 @@ public final class DataHandler {
      *
      * @param commenty the person to be saved
      */
-    public static void insertKommentar(Kommentarly commenty) {
+    public static void insertKommentar(Commentarly commenty) {
         getKommentarlist().add(commenty);
         writeCommentJSON();
     }
@@ -201,7 +201,7 @@ public final class DataHandler {
      * @return  success=true/false
      */
     public static boolean deleteComment(String kommentarUUID) {
-        Kommentarly commenty = readKommentarbyUUID(kommentarUUID);
+        Commentarly commenty = readKommentarbyUUID(kommentarUUID);
         if (commenty != null) {
             getKommentarlist().remove(commenty);
             writeCommentJSON();
@@ -262,8 +262,8 @@ public final class DataHandler {
                     )
             );
             ObjectMapper objectMapper = new ObjectMapper();
-            Kommentarly[] commentyList = objectMapper.readValue(jsonData, Kommentarly[].class);
-            for (Kommentarly commenty : commentyList) {
+            Commentarly[] commentyList = objectMapper.readValue(jsonData, Commentarly[].class);
+            for (Commentarly commenty : commentyList) {
                 getKommentarlist().add(commenty);
             }
         } catch (IOException ex) {
@@ -386,7 +386,7 @@ public final class DataHandler {
      * @return value of commentist
      */
 
-    private static List<Kommentarly> getKommentarlist() {
+    private static List<Commentarly> getKommentarlist() {
         if(commentyList == null) {
             setKommentarlist(new ArrayList<>());
             readCommentJSON();
@@ -401,7 +401,7 @@ public final class DataHandler {
      * @param commentist the value to set
      */
 
-    private static void setKommentarlist(List<Kommentarly> commentist) {
+    private static void setKommentarlist(List<Commentarly> commentist) {
         DataHandler.commentyList = commentist;
     }
 

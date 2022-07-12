@@ -1,0 +1,26 @@
+[
+{"postUUID" : "3087af5c-426a-465e-ae05-73608b2e61d4",
+"autorUUID": "939e0d32-800d-4e12-b94b-8e8a2ff718a4",
+"postdate": "18.07.2020 12:24:56",
+"text": "Lorem Ipsum Lorem Ipsum",
+"readingtime": 8,
+"comments": [
+{"commentUUID":"82c9566d-0ced-43d9-9dc8-5571ecf06711"},
+{"commentUUID":"a874804c-6aef-47ee-bba2-ab6c2e93b175"}
+]},
+{"postUUID" : "8d5b0dbb-6557-44c7-bea7-9f658a2eaa2f",
+"autorUUID": "939e0d32-800d-4e12-b94b-9e10a2ff718a4",
+"postdate": "20.07.2021 02:23:56",
+"text": "Lorem Ipsum Lorem Ipsum",
+"readingtime": 10,
+"comments": [
+{"commentUUID":"f1158d0d-af7b-4c27-97d1-cac1f2ea021a"},
+{"commentUUID":"63c39d84-aace-4f71-b76b-0121d6cc378b"}
+]},
+{"postUUID" : "3087af5c-426a-465e-ae05-73608b2e61d4",
+"autorUUID": "439h0z367-800f-4e52-b34b-6t8a6zz718a6",
+"postdate": "01.01.2022 09:44:53",
+"text": "Lorem Ipsum Lorem Ipsum",
+"readingtime": 7,
+"comments": []}
+]

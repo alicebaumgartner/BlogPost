@@ -1,0 +1,173 @@
+{
+	"id": "dc4ada17-4c24-49f7-aa94-a9664b4cb034",
+	"name": "Milestone 3 Tests",
+	"timestamp": "2022-07-12T12:41:31.700Z",
+	"collection_id": "20899808-ddd278df-eb4f-4131-b5d7-9cd3cfd57904",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 4,
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "57ad58e9-a304-4c52-b167-069c0cc450b3",
+			"name": "Vaild_admin_Login",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "c88c1ae0-61c9-4042-a41f-b277a0c4b486",
+			"name": "invalid_admin_Login",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "092eae95-3246-4cc8-a6be-ea6beb66f46d",
+			"name": "Vaild_user_Login",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "2cd15479-0b48-41d6-ad89-41afbb038f48",
+			"name": "Invalid_user_Login",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/login",
+			"time": 9,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "15562b08-4dea-42e6-9aa2-ee6aee292347",
+			"name": "2FA User",
+			"url": "http://localhost:8080/BlogPost-1.0-SNAPSHOT/resource/user/2fa",
+			"time": 6,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 200": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 200": false
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 46,
+	"collection": {
+		"requests": [
+			{
+				"id": "57ad58e9-a304-4c52-b167-069c0cc450b3",
+				"method": "POST"
+			},
+			{
+				"id": "c88c1ae0-61c9-4042-a41f-b277a0c4b486",
+				"method": "POST"
+			},
+			{
+				"id": "092eae95-3246-4cc8-a6be-ea6beb66f46d",
+				"method": "POST"
+			},
+			{
+				"id": "2cd15479-0b48-41d6-ad89-41afbb038f48",
+				"method": "POST"
+			},
+			{
+				"id": "15562b08-4dea-42e6-9aa2-ee6aee292347",
+				"method": "POST"
+			}
+		]
+	}
+}

@@ -4,6 +4,7 @@ import ch.blogpost.data.DataHandler;
 import ch.blogpost.model.Personly;
 
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -24,6 +25,7 @@ public class PersonService {
          * reads a list of all comments
          * @return  person as JSON
          */
+        @RolesAllowed({"admin", "user"})
         @GET
         @Path("list")
         @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +43,7 @@ public class PersonService {
          * @param personUUID
          * @return person
          */
+        @RolesAllowed({"admin", "user"})
         @GET
         @Path("read")
         @Produces(MediaType.APPLICATION_JSON)
@@ -67,6 +70,7 @@ public class PersonService {
      * inserts a new Person
      * @return Response
      */
+    @RolesAllowed({"admin", "user"})
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
@@ -87,6 +91,7 @@ public class PersonService {
      * @param personUUID the key
      * @return Response
      */
+    @RolesAllowed({"admin", "user"})
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
@@ -122,6 +127,7 @@ public class PersonService {
      * @param personUUID  the key
      * @return  Response
      */
+    @RolesAllowed({"admin"})
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)

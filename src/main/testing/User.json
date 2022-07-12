@@ -1,0 +1,13 @@
+[ {
+  "userUUID" : "0a704200-d55a-4a90-b626-857d020d28ed",
+  "username" : "admin1",
+  "password" : "pswadmin",
+  "role" : "admin",
+  "words": ["A", "B", "C", "D", "E"]
+}, {
+  "userUUID" : "d08323da-19f5-45df-8105-ec36236a173f",
+  "username" : "user1",
+  "password" : "pswuser",
+  "role" : "user",
+  "words": ["A", "B", "C", "D", "E"]
+} ]

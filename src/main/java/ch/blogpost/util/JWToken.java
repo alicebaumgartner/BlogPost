@@ -19,7 +19,6 @@ import java.util.*;
 
 /**
  * a JSON WebToken
- * @author Marcel Suter BZZ
  */
 public class JWToken {
 
@@ -51,7 +50,7 @@ public class JWToken {
             Date expiration = new Date(now.getTime() + duration * 60000);
 
             return Jwts.builder()
-                    .setIssuer("BookUltimate")
+                    .setIssuer("Blogpost")
                     .setSubject(encrypt(
                             subject,
                             getJwtEncrypt(),
@@ -70,8 +69,8 @@ public class JWToken {
 
     /**
      * reads all claims from the token
-     * @param token
-     * @return
+     * @param token  the token with all the claims
+     * @return a map of the claims
      */
     public static Map<String,String> readClaims(String token) {
         Map<String,String> claimMap = new HashMap<>();

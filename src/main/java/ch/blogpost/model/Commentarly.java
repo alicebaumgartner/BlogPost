@@ -20,7 +20,7 @@ import java.time.LocalDate;
 /**
  * a comment under the post
  */
-public class Kommentarly {
+public class Commentarly {
     @FormParam("commentUUID")
     @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
     private String commentUUID;
@@ -39,14 +39,14 @@ public class Kommentarly {
     @Size(min = 1, max=100)
     private String comment;
 
-    public Kommentarly() {
+    public Commentarly() {
     }
 
     /**
      * creates a Kommentar-object
      */
 
-    public Kommentarly(String commentUUID, Personly person, Postly post, Date date, String comment) {
+    public Commentarly(String commentUUID, Personly person, Postly post, Date date, String comment) {
         this.commentUUID = commentUUID;
         this.person = person;
         this.post = post;

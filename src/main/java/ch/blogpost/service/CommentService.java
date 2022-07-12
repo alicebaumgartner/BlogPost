@@ -4,9 +4,10 @@ package ch.blogpost.service;
 import ch.blogpost.data.DataHandler;
 
 
-import ch.blogpost.model.Kommentarly;
+import ch.blogpost.model.Commentarly;
 
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -30,11 +31,12 @@ public class CommentService {
          * reads a list of all comments
          * @return  comment as JSON
          */
+        @RolesAllowed({"admin", "user"})
         @GET
         @Path("list")
         @Produces(MediaType.APPLICATION_JSON)
         public Response listcomments() {
-            List<Kommentarly> kommentarList = DataHandler.readallKommentar();
+            List<Commentarly> kommentarList = DataHandler.readallKommentar();
             return Response
                     .status(200)
                     .entity(kommentarList)
@@ -46,6 +48,7 @@ public class CommentService {
          * @param kommentarUUID
          * @return Kommentar
          */
+        @RolesAllowed({"admin", "user"})
         @GET
         @Path("read")
         @Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +59,7 @@ public class CommentService {
 
         ) {
             int httpStatus = 200;
-            Kommentarly kommentar = DataHandler.readKommentarbyUUID(kommentarUUID);
+            Commentarly kommentar = DataHandler.readKommentarbyUUID(kommentarUUID);
             if (kommentar == null) {
                 httpStatus = 410;
             }
@@ -71,24 +74,25 @@ public class CommentService {
      * @param personUUID the uuid of the person
      * @return Response
      */
+    @RolesAllowed({"admin", "user"})
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertComment(
-            @Valid @BeanParam Kommentarly kommentar,
+            @Valid @BeanParam Commentarly kommentar,
             @NotEmpty
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @FormParam("personUUID" ) String personUUID,
             @Size(min=1, max = 300)
-            @FormParam("kommentar" ) String kommentartext,
+            @FormParam("commentcontent" ) String commentcontent,
             @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("datum" ) String date
+            @FormParam("date" ) String date
 
 
     ) throws ParseException {
 
         kommentar.setPersonUUID(personUUID);
-        kommentar.setKommentar(kommentartext);
+        kommentar.setKommentar(commentcontent);
         Date datefinal=new SimpleDateFormat("dd.MM.yyyy").parse(date);
         kommentar.setDate(datefinal);
         DataHandler.insertKommentar(kommentar);
@@ -104,11 +108,12 @@ public class CommentService {
      * @param postuuid the uuid of the post
      * @return Response
      */
+    @RolesAllowed({"admin", "user"})
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateComment(
-            @Valid @BeanParam Kommentarly comment,
+            @Valid @BeanParam Commentarly comment,
             @NotEmpty
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @FormParam("commentuuid") String commentUUID,
@@ -117,15 +122,15 @@ public class CommentService {
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @FormParam("personUUID") String personUUID,
             @Size(min=1, max = 300)
-            @FormParam("kommentar" ) String kommentartext,
+            @FormParam("commentcontent" ) String commentcontent,
             @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("datum" ) String date
+            @FormParam("date" ) String date
     ) throws ParseException {
         int httpStatus = 200;
-        Kommentarly oldcomment = DataHandler.readKommentarbyUUID(commentUUID);
+        Commentarly oldcomment = DataHandler.readKommentarbyUUID(commentUUID);
         if (oldcomment != null) {
-            if(!kommentartext.isEmpty()){
-                oldcomment.setKommentar(kommentartext);
+            if(!commentcontent.isEmpty()){
+                oldcomment.setKommentar(commentcontent);
             }else {
                 oldcomment.setKommentar(comment.getKommentar());
             }
@@ -159,19 +164,20 @@ public class CommentService {
 
     /**
      * deletes a comment identified by its uuid
-     * @param kommentarUUID  the key
+     * @param commentUUID  the key
      * @return  Response
      */
+    @RolesAllowed({"admin"})
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteComment(
             @NotEmpty
             @Pattern(regexp = "[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}")
-            @QueryParam("uuid") String kommentarUUID
+            @QueryParam("uuid") String commentUUID
     ) {
         int httpStatus = 200;
-        if (!DataHandler.deleteComment(kommentarUUID)) {
+        if (!DataHandler.deleteComment(commentUUID)) {
             httpStatus = 410;
         }
         return Response

@@ -1,12 +1,10 @@
 package ch.blogpost.service;
 
 import ch.blogpost.data.DataHandler;
-import ch.blogpost.model.Personly;
-import ch.blogpost.model.Postly;
 import ch.blogpost.model.Postly;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -28,6 +26,7 @@ public class PostService {
      * reads a list of all posts
      * @return  post as JSON
      */
+    @RolesAllowed({"admin", "user"})
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,10 +43,13 @@ public class PostService {
      * @param postUUID
      * @return post
      */
+    @RolesAllowed({"admin", "user"})
     @GET
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
     public Response readPost(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String postUUID
     ) {
         int httpStatus = 200;
@@ -67,6 +69,7 @@ public class PostService {
      * @param personUUID the uuid of the person
      * @return Response
      */
+    @RolesAllowed({"admin", "user"})
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
@@ -78,9 +81,9 @@ public class PostService {
             
             @FormParam("text") String text,
             @Pattern(regexp = "[^0-9]*")
-            @FormParam("lesezeit") Integer lesezeit,
+            @FormParam("readingtime") Integer readingtime,
             @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("datum") String datum
+            @FormParam("postdate") String postdate
             
     ) throws ParseException {
 
@@ -88,12 +91,12 @@ public class PostService {
        if(!text.isEmpty()){
            post.setText(text);
        }
-        if(lesezeit != null){
-            post.setLesezeit(lesezeit);
+        if(readingtime != null){
+            post.setReadingtime(readingtime);
         }
-        if(!datum.isEmpty()){
-            Date date=new SimpleDateFormat("dd.MM.yyyy").parse(datum);
-            post.setDatum(date);
+        if(!postdate.isEmpty()){
+            Date date=new SimpleDateFormat("dd.MM.yyyy").parse(postdate);
+            post.setPostdate(date);
         }
 
 
@@ -109,6 +112,7 @@ public class PostService {
      * @param postUUID the uuid of the person
      * @return Response
      */
+    @RolesAllowed({"admin", "user"})
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
@@ -122,9 +126,9 @@ public class PostService {
             @Size(min=1, max = 300)
             @FormParam("text") String text,
             @Pattern(regexp = "[^0-9]*")
-            @FormParam("lesezeit") Integer lesezeit,
+            @FormParam("readingtime") Integer readingtime,
             @Pattern(regexp = "^[0-9]{2}.[0-9]{2}.[0-9]{4}")
-            @FormParam("datum") String datum
+            @FormParam("postdate") String postdate
     ) throws ParseException {
         int httpStatus = 200;
         Postly oldpost = DataHandler.readPostlybyUUID(postly.getPostUUID());
@@ -132,13 +136,13 @@ public class PostService {
             if(!personUUID.isEmpty()){
                 oldpost.setAutorUUID(personUUID);
             }else{
-                oldpost.setAutor(postly.getAutor());
-                oldpost.setAutorUUID(postly.getAutor().getPersonUUID());
+                oldpost.setAuthor(postly.getAuthor());
+                oldpost.setAutorUUID(postly.getAuthor().getPersonUUID());
             }
-            if(lesezeit != null){
-                oldpost.setLesezeit(postly.getLesezeit());
+            if(readingtime != null){
+                oldpost.setReadingtime(postly.getReadingtime());
             }else{
-                oldpost.setLesezeit(lesezeit);
+                oldpost.setReadingtime(readingtime);
             }
             if(!text.isEmpty()){
 
@@ -146,17 +150,17 @@ public class PostService {
                 oldpost.setText(postly.getText());
 
             }
-            if(!datum.isEmpty()){
-                Date date=new SimpleDateFormat("dd.MM.yyyy").parse(datum);
+            if(!postdate.isEmpty()){
+                Date date=new SimpleDateFormat("dd.MM.yyyy").parse(postdate);
 
-                oldpost.setDatum(date);
+                oldpost.setPostdate(date);
             }else {
-                oldpost.setDatum(postly.getDatum());
+                oldpost.setPostdate(postly.getPostdate());
 
             }
 
 
-            oldpost.setKommentare(postly.getKommentare());
+            oldpost.setComments(postly.getComments());
 
 
 
@@ -175,6 +179,7 @@ public class PostService {
      * @param postUUID  the key
      * @return  Response
      */
+    @RolesAllowed({"admin"})
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
